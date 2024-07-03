@@ -5,8 +5,6 @@ public class PasswordUpdateRequest {
 	private String newPassword;
     private String confirmPassword;
  
-    // Getters and setters
- 
     public String getNewPassword() {
         return newPassword;
     }

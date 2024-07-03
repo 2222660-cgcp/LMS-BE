@@ -11,7 +11,7 @@ import com.task.reservation.entity.IssuebookResponse;
 import com.task.reservation.entity.Reservation;
 import com.task.reservation.service.ReservationService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin()
 @RestController
 @RequestMapping("/books")
 public class ReservationController {

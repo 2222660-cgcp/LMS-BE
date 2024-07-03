@@ -1,18 +1,11 @@
 package com.task.auth.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
-
-import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.task.auth.model.AuthenticationResponse;
 import com.task.auth.model.LoginRequest;
 import com.task.auth.model.Users;
 import com.task.auth.repository.UserRepository;
@@ -28,8 +21,7 @@ class ValidationserviceTest {
 	
 	@InjectMocks
 	private Validationservice validationService;
-	
-		
+			
 	private LoginRequest loginRequest;
 	private Users user1;
 	private Users user2;

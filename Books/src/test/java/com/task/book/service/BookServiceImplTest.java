@@ -22,12 +22,14 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.task.author.model.Author;
 import com.task.book.exceptionhandling.BookAlreadyReservedException;
 import com.task.book.exceptionhandling.BookNotFoundException;
 import com.task.book.feignClient.AuthorFeignClient;
 import com.task.book.feignClient.CategoryFeignClient;
 import com.task.book.model.Book;
 import com.task.book.repository.BookRepository;
+import com.task.category.model.Category;
 
 @SpringBootTest
 public class BookServiceImplTest {
@@ -151,13 +153,13 @@ public class BookServiceImplTest {
 		});
 	}
 	
-	@Test
-	void testAddBook_Success() {
+//	@Test
+//	void testAddBook_Success() {
 //		Author author = new Author();
 //		Category category = new Category();
 //		when(authorFeignClient.viewAuthorbyId(book1.getAuthorId(), token)).thenReturn(author);
 //		when(categoryFeignClient.viewCategorybyId(book1.getCategoryId(), token)).thenReturn(category);
-		when(bookRepository.save(any(Book.class))).thenReturn(book1);
+//		when(bookRepository.save(any(Book.class))).thenReturn(book1);
 //		Book result = bookServiceImpl.addBook(book1, token);
 //		
 //		assertNotNull(result);
@@ -169,7 +171,7 @@ public class BookServiceImplTest {
 //		assertFalse(result.isReserved());
 //		
 //		verify(bookRepository, times(1)).save(any(Book.class));
-	}
+//	}
 	
 //	@Test
 //	void testAddBook_AuthorNotFound() {

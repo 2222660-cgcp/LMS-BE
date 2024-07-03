@@ -87,6 +87,5 @@ public class BookController {
 	public ResponseEntity<UserAvailableBooks> searchBooksForUser(@PathVariable String book_name, @RequestHeader("Authorization") final String token) {
 		UserAvailableBooks userAvailableBooks = bookService.searchBooksForUser(book_name, token);
 		return new ResponseEntity<UserAvailableBooks> (userAvailableBooks, HttpStatus.OK);
-	} 
-	
+	} 	
 } 

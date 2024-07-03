@@ -5,7 +5,6 @@ import java.util.List;
 import com.task.auth.model.PasswordUpdateRequest;
 import com.task.auth.model.Users;
 
-
 public interface AuthService {	
 	List<Users> registeredUsers();
 	Users signUp(Users userData);

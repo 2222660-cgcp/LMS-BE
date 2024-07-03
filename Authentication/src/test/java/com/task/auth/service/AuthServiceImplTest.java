@@ -33,12 +33,11 @@ class AuthServiceImplTest {
 	
 	@InjectMocks
 	private AuthServiceImpl authServiceImpl;
-	
 		
 	private LoginRequest loginRequest;
 	private Users user1;
 	private Users user2;
-	
+
 	@BeforeEach
 	void setUp() {
 		user1 = new Users();

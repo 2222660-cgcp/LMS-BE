@@ -32,7 +32,6 @@ class LoginServiceTest {
 	@Mock
 	private CustomerDetailsService customerDetailservice;
 	
-	
 	@InjectMocks
 	private LoginService loginService;
 		

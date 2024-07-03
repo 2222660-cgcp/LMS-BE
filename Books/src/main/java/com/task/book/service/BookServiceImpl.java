@@ -123,7 +123,6 @@ public class BookServiceImpl implements BookService{
 		return book;	
 	}
 	
-	
 //	------------------------------------------------------------------------------------------------------------
 
 	@Override
@@ -165,6 +164,5 @@ public class BookServiceImpl implements BookService{
 		obj.setAuthorName(author.getAuthorName());
 		obj.setCategoryName(category.getCategoryName());
 		return obj;
-	}
-		
+	}		
 }

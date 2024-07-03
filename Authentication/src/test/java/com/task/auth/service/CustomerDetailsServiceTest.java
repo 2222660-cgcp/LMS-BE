@@ -22,7 +22,6 @@ import com.task.auth.repository.UserRepository;
 
 @SpringBootTest
 class CustomerDetailsServiceTest {
-
 	
 	@Mock
 	private UserRepository userRepository;
