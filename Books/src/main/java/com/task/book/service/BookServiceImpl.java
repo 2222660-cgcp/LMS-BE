@@ -20,6 +20,8 @@ import com.task.book.repository.BookRepository;
 import com.task.category.exceptionhandling.CategoryNotFoundException;
 import com.task.category.model.Category;
 
+//---------------------------ANAGHA.S.R---------------------------
+
 @Service
 public class BookServiceImpl implements BookService{
 	
@@ -123,7 +125,7 @@ public class BookServiceImpl implements BookService{
 		return book;	
 	}
 	
-//	------------------------------------------------------------------------------------------------------------
+//	---------------------------IBRAHIM BADSHAH---------------------------------------------------------------------------------
 
 	@Override
 	public void returnBook(int book_id, String token) {
@@ -164,5 +166,26 @@ public class BookServiceImpl implements BookService{
 		obj.setAuthorName(author.getAuthorName());
 		obj.setCategoryName(category.getCategoryName());
 		return obj;
-	}		
+	}	
+	
+	@Override
+    public List<UserAvailableBooks> searchBooksByPartialName(String name, String token) {
+        List<Book> books = bookRepository.findByBookNameContaining(name);
+        List<UserAvailableBooks> userAvailableBooks = new ArrayList<>();
+        for (Book book : books) {
+            Author author = authorFeignClient.viewAuthorbyId(book.getAuthorId(), token);
+            Category category = categoryFeignClient.viewCategorybyId(book.getCategoryId(), token);
+            UserAvailableBooks obj = new UserAvailableBooks(
+            		book.getBookId(),
+            		book.getBookName(),
+            		book.getBookNo(),
+                    author.getAuthorName(),
+                    category.getCategoryName(),
+                    book.isReserved());
+            userAvailableBooks.add(obj);
+        }
+        return userAvailableBooks;
+    }
+
+	
 }

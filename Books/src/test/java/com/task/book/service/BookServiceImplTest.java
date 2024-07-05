@@ -22,14 +22,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.task.author.model.Author;
 import com.task.book.exceptionhandling.BookAlreadyReservedException;
 import com.task.book.exceptionhandling.BookNotFoundException;
 import com.task.book.feignClient.AuthorFeignClient;
 import com.task.book.feignClient.CategoryFeignClient;
 import com.task.book.model.Book;
 import com.task.book.repository.BookRepository;
-import com.task.category.model.Category;
+
+
+//-----------------------ANAGHA.S.R------------------------------------
 
 @SpringBootTest
 public class BookServiceImplTest {
@@ -153,39 +154,6 @@ public class BookServiceImplTest {
 		});
 	}
 	
-//	@Test
-//	void testAddBook_Success() {
-//		Author author = new Author();
-//		Category category = new Category();
-//		when(authorFeignClient.viewAuthorbyId(book1.getAuthorId(), token)).thenReturn(author);
-//		when(categoryFeignClient.viewCategorybyId(book1.getCategoryId(), token)).thenReturn(category);
-//		when(bookRepository.save(any(Book.class))).thenReturn(book1);
-//		Book result = bookServiceImpl.addBook(book1, token);
-//		
-//		assertNotNull(result);
-//		assertEquals("book one", book1.getBookName());
-//		assertEquals(123, result.getAuthorId());
-//		assertEquals(456, result.getBookNo());
-//		assertEquals(100, result.getBookPrice());
-//		assertEquals(879, result.getCategoryId());
-//		assertFalse(result.isReserved());
-//		
-//		verify(bookRepository, times(1)).save(any(Book.class));
-//	}
-	
-//	@Test
-//	void testAddBook_AuthorNotFound() {
-//		when(authorFeignClient.viewAuthorbyId(book1.getAuthorId(), token)).thenReturn(null);
-//		
-//		Exception exception = assertThrows(AuthorNotFoundException.class, ()-> {
-//			bookServiceImpl.addBook(book1, token);
-//		});
-//		
-//		String expectedMsg = "Author NotFound";
-//		String actualMsg = exception.getMessage();
-//		
-//		assertTrue(actualMsg.contains(expectedMsg));
-//	}
 		
 	@Test
 	void testEditBook_Success() {
@@ -203,7 +171,7 @@ public class BookServiceImplTest {
 		
 		verify(bookRepository, times(1)).save(any(Book.class));
 	}
-	
+
 	@Test
 	void testEditBook_NotFound() {
 		Book updateBook = new Book();
@@ -236,6 +204,8 @@ public class BookServiceImplTest {
 		verify(bookRepository, never()).deleteById(bookId);
 		assertEquals("Book not found", exception.getMessage());
 	}
+	
+//	---------------------IBRAHIM BADSHAH----------------------------
 	
 	@Test
 	void testReserveBook_Success() {

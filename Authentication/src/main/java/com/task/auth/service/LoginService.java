@@ -10,6 +10,8 @@ import com.task.auth.model.LoginResponse;
 import com.task.auth.model.Users;
 import com.task.auth.repository.UserRepository;
 
+//---------------------------------------ANAGHA.S.R--------------------------------------------------------
+
 @Component 
 public class LoginService {
 
@@ -21,7 +23,7 @@ public class LoginService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	public LoginResponse userLogin(LoginRequest appuser) throws UserNotFoundException { 
 	
 		final UserDetails userdetails = customerDetailservice.loadUserByUsername(appuser.getUsername());

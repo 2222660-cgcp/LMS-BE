@@ -3,6 +3,7 @@ package com.task.book.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,7 +29,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.task.book.model.Book;
+import com.task.book.model.UserAvailableBooks;
 import com.task.book.service.BookService;
+
+//-----------------------ANAGHA.S.R------------------------------------
 
 @WebMvcTest(BookController.class)
 class BookControllerTest {
@@ -189,5 +193,66 @@ class BookControllerTest {
 		
 		verify(bookService, times(1)).reserveBook(anyInt(), anyString());
 	}
+	
+//	----------------------IBRAHIM BADSHAH-------------------------------------------------------------------------------
+	
+	@Test
+    public void testReturnBook() throws Exception {
+        doNothing().when(bookService).returnBook(anyInt(), anyString());
+ 
+        mockMvc.perform(put("/book/return_book/{book_id}", 1)
+                .header("Authorization", "Bearer token"))
+                .andExpect(status().isOk());
+    }
+	
+	@Test
+    public void testAvailableBooksForUser() throws Exception {
+        List<UserAvailableBooks> userAvailableBooks = Arrays.asList(
+                new UserAvailableBooks(1, "Book 1", 101, "Author 1", "Category 1", false),
+                new UserAvailableBooks(2, "Book 2", 102, "Author 2", "Category 2", true)
+        );
+        when(bookService.availableBooksForUser(anyString())).thenReturn(userAvailableBooks);
+ 
+        mockMvc.perform(get("/book/available-books")
+                .header("Authorization", "Bearer token"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].bookId").value(1))
+                .andExpect(jsonPath("$[0].bookName").value("Book 1"))
+                .andExpect(jsonPath("$[0].bookNo").value(101))
+                .andExpect(jsonPath("$[0].authorName").value("Author 1"))
+                .andExpect(jsonPath("$[0].categoryName").value("Category 1"))
+                .andExpect(jsonPath("$[0].reserved").value(false))
+                .andExpect(jsonPath("$[1].bookId").value(2))
+                .andExpect(jsonPath("$[1].bookName").value("Book 2"))
+                .andExpect(jsonPath("$[1].bookNo").value(102))
+                .andExpect(jsonPath("$[1].authorName").value("Author 2"))
+                .andExpect(jsonPath("$[1].categoryName").value("Category 2"))
+                .andExpect(jsonPath("$[1].reserved").value(true));
+    }
+	
+	@Test
+    public void testSearchBooksByPartialName() throws Exception {
+        List<UserAvailableBooks> books = Arrays.asList(
+                new UserAvailableBooks(3, "Partial Book 1", 103, "Author 3", "Category 3", false),
+                new UserAvailableBooks(4, "Partial Book 2", 104, "Author 4", "Category 4", true)
+        );
+        when(bookService.searchBooksByPartialName(anyString(), anyString())).thenReturn(books);
+ 
+        mockMvc.perform(get("/book/search/{name}", "Partial Book")
+                .header("Authorization", "Bearer token"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].bookId").value(3))
+                .andExpect(jsonPath("$[0].bookName").value("Partial Book 1"))
+                .andExpect(jsonPath("$[0].bookNo").value(103))
+                .andExpect(jsonPath("$[0].authorName").value("Author 3"))
+                .andExpect(jsonPath("$[0].categoryName").value("Category 3"))
+                .andExpect(jsonPath("$[0].reserved").value(false))
+                .andExpect(jsonPath("$[1].bookId").value(4))
+                .andExpect(jsonPath("$[1].bookName").value("Partial Book 2"))
+                .andExpect(jsonPath("$[1].bookNo").value(104))
+                .andExpect(jsonPath("$[1].authorName").value("Author 4"))
+                .andExpect(jsonPath("$[1].categoryName").value("Category 4"))
+                .andExpect(jsonPath("$[1].reserved").value(true));
+    }
 
 }

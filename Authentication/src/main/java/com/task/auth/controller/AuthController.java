@@ -28,6 +28,8 @@ import com.task.auth.service.AuthService;
 import com.task.auth.service.JwtUtil;
 import com.task.auth.service.LoginService;
 
+//---------------------------------Anagha.S.R-------------------------------------------------------------------------
+
 @RestController   
 @CrossOrigin()  
 public class AuthController {
@@ -80,7 +82,8 @@ public class AuthController {
 		return new ResponseEntity<List<Users>> (users, HttpStatus.OK);
 	}
 	
-//	------------------------------------------------------------------------------------------------------------------
+	
+//	---------------------------------------Ibrahim Badshah------------------------------------------------------------------------------
 	
 	@GetMapping("/validateToken")
     public ResponseEntity<String> validateToken(@RequestHeader("Authorization") String authorizationHeader) {

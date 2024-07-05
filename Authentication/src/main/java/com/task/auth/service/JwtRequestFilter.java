@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+//-------------------------------ANAGHA.S.R-----------------------------
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter { 
@@ -48,7 +49,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 				SecurityContextHolder.getContext().setAuthentication(token); 
 			}
 		}
-		
+	
 		filterChain.doFilter(request, response); 
 	}
 }

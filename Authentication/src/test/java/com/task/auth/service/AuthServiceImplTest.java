@@ -1,6 +1,7 @@
 package com.task.auth.service;
 
-import static org.junit.jupiter.api.Assertions.*; 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,8 +17,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.task.auth.model.LoginRequest;
+import com.task.auth.model.PasswordUpdateRequest;
 import com.task.auth.model.Users;
 import com.task.auth.repository.UserRepository;
+
+//----------------------------Anagha.S.R-------------------------------------------------------------------
 
 @SpringBootTest
 class AuthServiceImplTest {
@@ -37,6 +41,9 @@ class AuthServiceImplTest {
 	private LoginRequest loginRequest;
 	private Users user1;
 	private Users user2;
+	
+	private
+	PasswordUpdateRequest passwordUpdateRequest;
 
 	@BeforeEach
 	void setUp() {
@@ -56,9 +63,12 @@ class AuthServiceImplTest {
 		loginRequest.setUsername("username");
 		loginRequest.setPassword("password");
 		
+		passwordUpdateRequest = new PasswordUpdateRequest();
+        passwordUpdateRequest.setNewPassword("newpassword");
+		
 		MockitoAnnotations.openMocks(this);
 	}
-	
+
 	@Test
 	void testViewRegisteredUsers_Success() {
 		List<Users> users = Arrays.asList(user1, user2);
@@ -99,5 +109,40 @@ class AuthServiceImplTest {
 		assertEquals("user1Role", result.getRole());
 		
 		verify(userRepository).save(user1);
-	}		
+	}
+	
+//	--------------------------------Ibrahim Badshah-------------------------------------------------------------------------------
+	
+	
+	@Test
+    void updateUserTest() {
+        String username = "user1";
+        String token = "token";
+ 
+        when(userRepository.findById(username)).thenReturn(Optional.of(new Users()));
+ 
+        Users updatedUser = authServiceImpl.updateUser(username, user1, token);
+ 
+        assertEquals(user1.getEmail(), updatedUser.getEmail());
+        assertEquals(user1.getPhone(), updatedUser.getPhone());
+        assertEquals(user1.getFirstname(), updatedUser.getFirstname());
+        assertEquals(user1.getLastname(), updatedUser.getLastname());
+        assertEquals(user1.getAddress(), updatedUser.getAddress());
+ 
+        verify(userRepository, times(1)).save(any(Users.class));
+    }
+	
+	@Test
+    void changePasswordThrowsExceptionWhenUserNotFound() {
+        String username = "nonexistentuser";
+        String token = "token";
+ 
+        when(userRepository.findById(username)).thenReturn(Optional.empty());
+ 
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            authServiceImpl.changePassword(username, passwordUpdateRequest, token);
+        });
+ 
+        assertEquals("User not found", exception.getMessage());
+    }
 }

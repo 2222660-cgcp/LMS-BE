@@ -12,6 +12,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+//------------------------------------------ANAGHA.S.R---------------------------------------
+
 @Service
 public class JwtUtil { 
 	private String secretkey = "${jwt.secret}"; 
@@ -37,7 +39,7 @@ public class JwtUtil {
 	private String createToken(Map<String, Object> claims, String subject) { 
 		return  Jwts.builder().setClaims(claims).setSubject(subject)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 1000*60*60)) 
+				.setExpiration(new Date(System.currentTimeMillis() + 1000*60*60*2)) 
 				.signWith(SignatureAlgorithm.HS256, secretkey).compact();
 	}
 

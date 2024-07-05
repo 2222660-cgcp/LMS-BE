@@ -20,6 +20,9 @@ import com.task.book.model.Book;
 import com.task.book.model.UserAvailableBooks;
 import com.task.book.service.BookService;
 
+
+//-----------------------ANAGHA.S.R-----------------------------------
+
 @CrossOrigin()
 @RestController
 @RequestMapping("/book")
@@ -64,13 +67,14 @@ public class BookController {
 		 return new ResponseEntity<String> (response,HttpStatus.OK);
 	}
 	
+	
+//	---------------------------IBRAHIM BADSHAH----------------------------------------------------------------------------------------
+
 	@PutMapping("/reserve_book/{book_id}")
 	public ResponseEntity<Book> reserveBook(@PathVariable int book_id, @RequestHeader("Authorization") final String token) {
 		Book book = bookService.reserveBook(book_id, token);
 		return new ResponseEntity<Book> (book,HttpStatus.OK);
 	}
-	
-//	-------------------------------------------------------------------------------------------------------------------
 	
 	@PutMapping("/return_book/{book_id}")
 	public void returnBook(@PathVariable int book_id, @RequestHeader("Authorization") final String token) {
@@ -87,5 +91,11 @@ public class BookController {
 	public ResponseEntity<UserAvailableBooks> searchBooksForUser(@PathVariable String book_name, @RequestHeader("Authorization") final String token) {
 		UserAvailableBooks userAvailableBooks = bookService.searchBooksForUser(book_name, token);
 		return new ResponseEntity<UserAvailableBooks> (userAvailableBooks, HttpStatus.OK);
-	} 	
+	} 
+	
+	@GetMapping("/search/{name}")
+    public ResponseEntity<List<UserAvailableBooks>> searchBooksByPartialName(@PathVariable String name, @RequestHeader("Authorization") final String token) {
+        List<UserAvailableBooks> books = bookService.searchBooksByPartialName(name, token);
+        return new ResponseEntity<>(books, HttpStatus.OK);
+    }
 } 

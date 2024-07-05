@@ -1,4 +1,4 @@
-package com.task.reservation.controller;
+package com.task.feedback.controller;
 
 import java.util.List;
 
@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.task.reservation.entity.Feedback;
-import com.task.reservation.service.FeedbackService;
+import com.task.feedback.entity.Feedback;
+import com.task.feedback.service.FeedbackService;
+
+//-----------------------------IBRAHIM BADSHAH---------------------------
 
 @CrossOrigin
 @RestController
@@ -31,7 +33,7 @@ public class FeedbackController {
         return ResponseEntity.ok(savedComment);
     }
     
-//    --------------------------------------------------------------------------------------------------------------
+//    ------------------------ANAGHA.S.R--------------------------------------------------------------------------------------
     
     @GetMapping
     public ResponseEntity<List<Feedback>> viewAllFeedback(@RequestHeader("Authorization") final String token) {

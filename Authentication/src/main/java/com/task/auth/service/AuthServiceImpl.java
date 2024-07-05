@@ -9,6 +9,8 @@ import com.task.auth.model.PasswordUpdateRequest;
 import com.task.auth.model.Users;
 import com.task.auth.repository.UserRepository;
 
+//-----------------------------------------Anagha.S.R----------------------------------------------------------------------------
+
 @Service
 public class AuthServiceImpl implements AuthService{
 	
@@ -25,7 +27,8 @@ public class AuthServiceImpl implements AuthService{
 		return userRepository.registeredUsers();
 	}
 	
-//	----------------------------------------------------------------------------------------------------------------
+	
+//	------------------------------------Ibrahim Badshah---------------------------------------------------------------------------------
 	
 	@Override
     public Users getUserByUsername(String username,String Token) {
@@ -46,7 +49,7 @@ public class AuthServiceImpl implements AuthService{
 		userRepository.save(userObj);
 		return userObj;
 	}
-	
+
 	@Override
     public void changePassword(String username, PasswordUpdateRequest passwordChangeRequest, String token) {
         Users existingUser = userRepository.findById(username)
@@ -54,4 +57,6 @@ public class AuthServiceImpl implements AuthService{
         existingUser.setPassword(passwordChangeRequest.getNewPassword());
         userRepository.save(existingUser);
     }
+
+	
 }

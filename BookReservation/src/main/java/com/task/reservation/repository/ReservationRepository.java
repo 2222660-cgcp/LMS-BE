@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.task.reservation.entity.Reservation;
 
+//------------------------ANAGHA.S.R----------
+
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
@@ -17,6 +19,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	
 	@Query("select r from Reservation r order by r.reservedAt desc")
 	List<Reservation> viewReservations();
+	
+//	-----------------------------IBRAHIM BADSHAH------------------------------------
 	
 	@Query("select r from Reservation r where r.book_Id = :book_Id")
 	Reservation getReservationByBookId(@Param("book_Id")int book_Id);

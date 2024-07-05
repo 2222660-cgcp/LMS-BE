@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.task.author.model.Author;
 import com.task.author.service.AuthorService;
 
+//-----------------------ANAGHA.S.R------------------------------------
+
 @CrossOrigin
 @RestController
 @RequestMapping("/author")
@@ -44,7 +46,7 @@ public class AuthorController {
 		Author author = authorService.viewAuthorByName(author_name, token);
 		return new ResponseEntity<Author> (author, HttpStatus.OK);
 	}
-	
+
 	@PostMapping()
 	public ResponseEntity<Author> addAuthor(@RequestBody Author author, @RequestHeader("Authorization") final String token) {
 		Author authorObject = authorService.addAuthor(author, token);

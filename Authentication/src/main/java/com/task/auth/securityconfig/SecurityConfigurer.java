@@ -16,6 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.task.auth.service.CustomerDetailsService;
 import com.task.auth.service.JwtRequestFilter;
 
+//-----------------------ANAGHA.S.R------------------------------------
+
 @EnableWebSecurity 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter { 
