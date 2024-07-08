@@ -112,6 +112,8 @@ public class BookServiceImpl implements BookService{
 		}
 		return book;
 	}
+	
+//	---------------------------IBRAHIM BADSHAH---------------------------------------------------------------------------------
 
 	@Override
 	public Book reserveBook(int book_id, String token) {
@@ -125,8 +127,6 @@ public class BookServiceImpl implements BookService{
 		return book;	
 	}
 	
-//	---------------------------IBRAHIM BADSHAH---------------------------------------------------------------------------------
-
 	@Override
 	public void returnBook(int book_id, String token) {
 		Book book = bookRepository.findById(book_id).orElseThrow(()-> new BookNotFoundException("Book not found"));
@@ -185,7 +185,5 @@ public class BookServiceImpl implements BookService{
             userAvailableBooks.add(obj);
         }
         return userAvailableBooks;
-    }
-
-	
+    }	
 }
